@@ -1,0 +1,3 @@
+/home/vignesh/Documents/vt_vulkan_app/build/CMakeFiles/VulkanTest.dir
+/home/vignesh/Documents/vt_vulkan_app/build/CMakeFiles/edit_cache.dir
+/home/vignesh/Documents/vt_vulkan_app/build/CMakeFiles/rebuild_cache.dir
