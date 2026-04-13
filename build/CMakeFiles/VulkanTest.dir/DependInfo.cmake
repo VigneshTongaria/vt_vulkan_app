@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/vignesh/Documents/vt_vulkan_app/main.cpp" "CMakeFiles/VulkanTest.dir/main.cpp.o" "gcc" "CMakeFiles/VulkanTest.dir/main.cpp.o.d"
   "/home/vignesh/Documents/vt_vulkan_app/vt_app.cpp" "CMakeFiles/VulkanTest.dir/vt_app.cpp.o" "gcc" "CMakeFiles/VulkanTest.dir/vt_app.cpp.o.d"
+  "/home/vignesh/Documents/vt_vulkan_app/vte_device.cpp" "CMakeFiles/VulkanTest.dir/vte_device.cpp.o" "gcc" "CMakeFiles/VulkanTest.dir/vte_device.cpp.o.d"
   "/home/vignesh/Documents/vt_vulkan_app/vte_window.cpp" "CMakeFiles/VulkanTest.dir/vte_window.cpp.o" "gcc" "CMakeFiles/VulkanTest.dir/vte_window.cpp.o.d"
   "" "VulkanTest" "gcc" "CMakeFiles/VulkanTest.dir/link.d"
   )

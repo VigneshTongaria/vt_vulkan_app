@@ -5,6 +5,7 @@ VulkanTest: \
   CMakeFiles/VulkanTest.dir/main.cpp.o \
   CMakeFiles/VulkanTest.dir/vt_app.cpp.o \
   CMakeFiles/VulkanTest.dir/vte_window.cpp.o \
+  CMakeFiles/VulkanTest.dir/vte_device.cpp.o \
   /usr/lib/libvulkan.so \
   /usr/lib/libglfw.so.3.4 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
@@ -46,6 +47,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 CMakeFiles/VulkanTest.dir/vte_window.cpp.o:
+
+CMakeFiles/VulkanTest.dir/vte_device.cpp.o:
 
 /usr/lib/libvulkan.so:
 

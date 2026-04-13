@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/VulkanTest.dir/main.cpp.o.d"
   "CMakeFiles/VulkanTest.dir/vt_app.cpp.o"
   "CMakeFiles/VulkanTest.dir/vt_app.cpp.o.d"
+  "CMakeFiles/VulkanTest.dir/vte_device.cpp.o"
+  "CMakeFiles/VulkanTest.dir/vte_device.cpp.o.d"
   "CMakeFiles/VulkanTest.dir/vte_window.cpp.o"
   "CMakeFiles/VulkanTest.dir/vte_window.cpp.o.d"
   "VulkanTest"

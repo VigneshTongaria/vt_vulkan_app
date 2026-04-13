@@ -177,6 +177,30 @@ vt_app.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vt_app.cpp.s
 .PHONY : vt_app.cpp.s
 
+vte_device.o: vte_device.cpp.o
+.PHONY : vte_device.o
+
+# target to build an object file
+vte_device.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_device.cpp.o
+.PHONY : vte_device.cpp.o
+
+vte_device.i: vte_device.cpp.i
+.PHONY : vte_device.i
+
+# target to preprocess a source file
+vte_device.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_device.cpp.i
+.PHONY : vte_device.cpp.i
+
+vte_device.s: vte_device.cpp.s
+.PHONY : vte_device.s
+
+# target to generate assembly for a file
+vte_device.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_device.cpp.s
+.PHONY : vte_device.cpp.s
+
 vte_window.o: vte_window.cpp.o
 .PHONY : vte_window.o
 
@@ -216,6 +240,9 @@ help:
 	@echo "... vt_app.o"
 	@echo "... vt_app.i"
 	@echo "... vt_app.s"
+	@echo "... vte_device.o"
+	@echo "... vte_device.i"
+	@echo "... vte_device.s"
 	@echo "... vte_window.o"
 	@echo "... vte_window.i"
 	@echo "... vte_window.s"
