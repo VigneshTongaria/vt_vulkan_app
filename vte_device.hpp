@@ -24,6 +24,8 @@ private:
 
     VkInstance vkinstance;
     VkDebugUtilsMessengerEXT debugMessenger;
+
+    // Creating vulkan instance
     void CreateInstance();
     bool checkValidationLayerSupport();
     void SetupDebugMessenger();
@@ -47,6 +49,11 @@ private:
     void DestroyDebugUtilsMessengerEXT(VkInstance instance, 
         VkDebugUtilsMessengerEXT debugMessenger, 
         const VkAllocationCallbacks* pAllocator);
+
+    // Getting Physical Device
+    VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+    void pickPhysicalDevice();
+    bool isDeviceSuitable(VkPhysicalDevice device);
 };
 
 

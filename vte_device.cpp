@@ -7,6 +7,7 @@ VteDevice::VteDevice(std::string name) : name(name)
 {
     CreateInstance();
     SetupDebugMessenger();
+    pickPhysicalDevice();
 }
 
 VteDevice::~VteDevice()
@@ -202,4 +203,40 @@ void VteDevice::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfo
     createDebugInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
     createDebugInfo.pfnUserCallback = debugCallback;
     createDebugInfo.pUserData = nullptr;
+}
+
+void VteDevice::pickPhysicalDevice()
+{
+    u_int32_t devicesCount = 0;
+    vkEnumeratePhysicalDevices(vkinstance,&devicesCount,nullptr);
+
+    if(devicesCount == 0)
+    {
+        throw std::runtime_error("failed to find GPUs with vulkan support");
+    }
+
+    std::vector<VkPhysicalDevice> physicalDevices(devicesCount);
+
+    vkEnumeratePhysicalDevices(vkinstance,&devicesCount,physicalDevices.data());
+
+    for(auto& dev : physicalDevices)
+    {
+        if(isDeviceSuitable(dev))
+        {
+            physicalDevice = dev;
+            break;
+        }
+    }
+}
+
+bool VteDevice::isDeviceSuitable(VkPhysicalDevice device)
+{
+    VkPhysicalDeviceProperties deviceProperties;
+    vkGetPhysicalDeviceProperties(device,&deviceProperties);
+
+    VkPhysicalDeviceFeatures deviceFeatures;
+    vkGetPhysicalDeviceFeatures(device,&deviceFeatures);
+
+    return deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU
+        && deviceFeatures.geometryShader;
 }
