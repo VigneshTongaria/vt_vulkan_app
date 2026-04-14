@@ -1,6 +1,7 @@
 #pragma once
 
 #include"vte_window.hpp"
+#include "vte_device.hpp"
 
 namespace vte
 {
@@ -15,5 +16,6 @@ namespace vte
         private :
         Vtewindow appwindow {width,height,"vt game engine"};
         std::string appname;
+        VteDevice device{appname};
     };
 }

@@ -10,11 +10,6 @@ namespace vte
 
     void Vtapp::run()
     {
-        u_int32_t extensionCount = 0;
-        vkEnumerateInstanceExtensionProperties(nullptr,&extensionCount,nullptr);
-
-        std::cout<<"\n Supported Extensions : "<<extensionCount << std::endl;
-
         while(!appwindow.ShouldClose())
         {
             glfwPollEvents();

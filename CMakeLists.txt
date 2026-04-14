@@ -7,6 +7,7 @@ set(SOURCE_FILES
    main.cpp
    vt_app.cpp
    vte_window.cpp
+   vte_device.cpp
 )
 
 # Find dependencies
@@ -21,3 +22,6 @@ target_link_libraries(VulkanTest PRIVATE Vulkan::Vulkan glfw)
 # Optional: Add GLM headers
 find_path(GLM_INCLUDE_DIR glm/glm.hpp)
 target_include_directories(VulkanTest PRIVATE ${GLM_INCLUDE_DIR})
+
+# Check if the build type is Debug
+# add_definitions(-DNDEBUG)
