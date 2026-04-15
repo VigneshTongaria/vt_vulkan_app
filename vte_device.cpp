@@ -3,7 +3,10 @@
 #include <iostream>
 #include <cstring>
 
-VteDevice::VteDevice(std::string name) : name(name)
+#define GLFW_EXPOSE_NATIVE_WAYLAND
+#include <GLFW/glfw3native.h>
+
+VteDevice::VteDevice(std::string name, vte::Vtewindow &window) : name(name), vteWindow(window)
 {
     createInstance();
     setupDebugMessenger();
@@ -139,6 +142,11 @@ std::vector<const char*> VteDevice::getRequiredExtensions()
         extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
     }
 
+    for(const auto& ex : extensions)
+    {
+        std::cout<<"Extension added : " << ex<< std::endl;
+    }
+
     return extensions;
 }
 
@@ -207,6 +215,19 @@ void VteDevice::populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfo
     createDebugInfo.pUserData = nullptr;
 }
 
+void VteDevice::createSurface()
+{
+    VkWaylandSurfaceCreateInfoKHR surfaceCreateInfo{};
+    surfaceCreateInfo.sType = VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR;
+    surfaceCreateInfo.display = glfwGetWaylandDisplay();
+    surfaceCreateInfo.surface = glfwGetWaylandWindow(vteWindow.window);
+
+    if(vkCreateWaylandSurfaceKHR(vkinstance,&surfaceCreateInfo,nullptr,&surface) != VK_SUCCESS)
+    {
+        throw std::runtime_error("failed to create window surface!");
+    }
+}
+
 void VteDevice::pickPhysicalDevice()
 {
     u_int32_t devicesCount = 0;
@@ -228,6 +249,11 @@ void VteDevice::pickPhysicalDevice()
             physicalDevice = dev;
             break;
         }
+    }
+
+    if(physicalDevice == VK_NULL_HANDLE)
+    {
+        throw std::runtime_error("failed to find suitable physical device");
     }
 }
 
@@ -253,17 +279,22 @@ QueueFamilyIndices VteDevice::findQueueFamilies(VkPhysicalDevice device)
    uint32_t queueFamilyCount = 0;
    vkGetPhysicalDeviceQueueFamilyProperties(device,&queueFamilyCount,nullptr);
    
-   std::vector<VkQueueFamilyProperties> queueFamilies;
+   std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
    vkGetPhysicalDeviceQueueFamilyProperties(device,&queueFamilyCount,queueFamilies.data());
-   u_int32_t i = 0;
+   uint32_t i = 0;
 
    for (const auto &family : queueFamilies)
    {
        if (family.queueFlags & VK_QUEUE_GRAPHICS_BIT)
        {
            indices.graphicsFamily = i;
-           break;
        }
+
+       if(indices.isComplete())
+       {
+         break;
+       }
+
        i++;
    }
 

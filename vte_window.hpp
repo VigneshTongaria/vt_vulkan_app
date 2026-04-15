@@ -13,11 +13,11 @@ namespace vte
         {
             return glfwWindowShouldClose(window);
         }
+        GLFWwindow* window = nullptr;
 
         private :
         void initwindow();
         u_int32_t width,height;
-        GLFWwindow* window = nullptr;
         std::string windowname;
     };
 }

@@ -16,6 +16,6 @@ namespace vte
         private :
         Vtewindow appwindow {width,height,"vt game engine"};
         std::string appname;
-        VteDevice device{appname};
+        VteDevice device{appname,appwindow};
     };
 }

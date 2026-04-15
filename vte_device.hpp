@@ -1,7 +1,9 @@
-#include <vulkan/vulkan_core.h>
+#define VK_USE_PLATFORM_WAYLAND_KHR
+#include <vulkan/vulkan.h>
 #include <string>
 #include <vector>
 #include <optional>
+#include "vte_window.hpp"
 
 struct QueueFamilyIndices
 {
@@ -17,8 +19,10 @@ class VteDevice
 {
 
 public:
-    VteDevice(std::string name);
+    VteDevice(std::string name, vte::Vtewindow &window);
     ~VteDevice();
+
+    vte::Vtewindow vteWindow;
 
 private:
     
@@ -61,6 +65,9 @@ private:
     void destroyDebugUtilsMessengerEXT(VkInstance instance, 
         VkDebugUtilsMessengerEXT debugMessenger, 
         const VkAllocationCallbacks* pAllocator);
+
+    VkSurfaceKHR surface;
+    void createSurface();
 
     // Device
     VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
