@@ -5,22 +5,24 @@
 
 VteDevice::VteDevice(std::string name) : name(name)
 {
-    CreateInstance();
-    SetupDebugMessenger();
+    createInstance();
+    setupDebugMessenger();
     pickPhysicalDevice();
+    createLogicalDevice();
 }
 
 VteDevice::~VteDevice()
 {
     vkDestroyInstance(vkinstance,nullptr);
+    vkDestroyDevice(device,nullptr);
 
     if(enableValidationLayer)
     {
-        DestroyDebugUtilsMessengerEXT(vkinstance,debugMessenger,nullptr);
+        destroyDebugUtilsMessengerEXT(vkinstance,debugMessenger,nullptr);
     }
 }
 
-void VteDevice::CreateInstance()
+void VteDevice::createInstance()
 {
     if(enableValidationLayer && !checkValidationLayerSupport())
     {
@@ -152,7 +154,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL VteDevice::debugCallback(
     return VK_FALSE;
 }
 
-void VteDevice::SetupDebugMessenger()
+void VteDevice::setupDebugMessenger()
 {
     if (!enableValidationLayer)
         return;
@@ -160,13 +162,13 @@ void VteDevice::SetupDebugMessenger()
     VkDebugUtilsMessengerCreateInfoEXT createDebugInfo{};
     populateDebugMessengerCreateInfo(createDebugInfo);
 
-    if(CreateDebugUtilsMessengerEXT(vkinstance,&createDebugInfo,nullptr,&debugMessenger) != VK_SUCCESS)
+    if(createDebugUtilsMessengerEXT(vkinstance,&createDebugInfo,nullptr,&debugMessenger) != VK_SUCCESS)
     {
         throw std::runtime_error("failed to set up debug messenger!");
     }
 }
 
-VkResult VteDevice::CreateDebugUtilsMessengerEXT(
+VkResult VteDevice::createDebugUtilsMessengerEXT(
     VkInstance instance,
     const VkDebugUtilsMessengerCreateInfoEXT *pCreateInfo,
     const VkAllocationCallbacks *pAllocator,
@@ -184,7 +186,7 @@ VkResult VteDevice::CreateDebugUtilsMessengerEXT(
     }
 }
 
-void VteDevice::DestroyDebugUtilsMessengerEXT(VkInstance instance, 
+void VteDevice::destroyDebugUtilsMessengerEXT(VkInstance instance, 
         VkDebugUtilsMessengerEXT debugMessenger, 
         const VkAllocationCallbacks* pAllocator)
 {
@@ -237,6 +239,70 @@ bool VteDevice::isDeviceSuitable(VkPhysicalDevice device)
     VkPhysicalDeviceFeatures deviceFeatures;
     vkGetPhysicalDeviceFeatures(device,&deviceFeatures);
 
+    QueueFamilyIndices queueIndices = findQueueFamilies(device);
+
     return deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU
-        && deviceFeatures.geometryShader;
+        && deviceFeatures.geometryShader
+        && queueIndices.isComplete();
+}
+
+QueueFamilyIndices VteDevice::findQueueFamilies(VkPhysicalDevice device)
+{
+   QueueFamilyIndices indices;
+
+   uint32_t queueFamilyCount = 0;
+   vkGetPhysicalDeviceQueueFamilyProperties(device,&queueFamilyCount,nullptr);
+   
+   std::vector<VkQueueFamilyProperties> queueFamilies;
+   vkGetPhysicalDeviceQueueFamilyProperties(device,&queueFamilyCount,queueFamilies.data());
+   u_int32_t i = 0;
+
+   for (const auto &family : queueFamilies)
+   {
+       if (family.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+       {
+           indices.graphicsFamily = i;
+           break;
+       }
+       i++;
+   }
+
+   return indices;
+}
+
+void VteDevice::createLogicalDevice()
+{
+    QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
+
+    VkDeviceQueueCreateInfo queueCreateInfo{};
+
+    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+    queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
+    queueCreateInfo.queueCount = 1;
+
+    float queuePriority = 1.0f;
+    queueCreateInfo.pQueuePriorities = &queuePriority;
+
+    VkDeviceCreateInfo deviceCreateInfo{};
+    deviceCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+    deviceCreateInfo.pQueueCreateInfos = &queueCreateInfo;
+    deviceCreateInfo.queueCreateInfoCount = 1;
+    deviceCreateInfo.pEnabledFeatures = &deviceFeatures;
+
+    if(enableValidationLayer)
+    {
+        deviceCreateInfo.enabledLayerCount = static_cast<u_int32_t>(validationLayers.size());
+        deviceCreateInfo.ppEnabledLayerNames = validationLayers.data();
+    }
+    else
+    {
+        deviceCreateInfo.enabledLayerCount = 0;
+    }
+
+    if(vkCreateDevice(physicalDevice,&deviceCreateInfo,nullptr,&device) != VK_SUCCESS)
+    {
+        throw std::runtime_error("failed to create logical device!");
+    }
+
+    vkGetDeviceQueue(device,indices.graphicsFamily.value(),0,&graphicsQueue);
 }

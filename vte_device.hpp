@@ -1,6 +1,18 @@
 #include <vulkan/vulkan_core.h>
 #include <string>
 #include <vector>
+#include <optional>
+
+struct QueueFamilyIndices
+{
+    std::optional<u_int32_t> graphicsFamily;
+
+    bool isComplete()
+    {
+        return graphicsFamily.has_value();
+    }
+};
+
 class VteDevice
 {
 
@@ -25,10 +37,10 @@ private:
     VkInstance vkinstance;
     VkDebugUtilsMessengerEXT debugMessenger;
 
-    // Creating vulkan instance
-    void CreateInstance();
+    // Vulkan instance
+    void createInstance();
     bool checkValidationLayerSupport();
-    void SetupDebugMessenger();
+    void setupDebugMessenger();
     std::vector<const char*> getRequiredExtensions();
     void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
     
@@ -39,21 +51,27 @@ private:
         void* pUserData
     );
 
-    VkResult CreateDebugUtilsMessengerEXT(
+    VkResult createDebugUtilsMessengerEXT(
         VkInstance instance,
         const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
         const VkAllocationCallbacks* pAllocator,
         VkDebugUtilsMessengerEXT* pDebugMessenger
     );
 
-    void DestroyDebugUtilsMessengerEXT(VkInstance instance, 
+    void destroyDebugUtilsMessengerEXT(VkInstance instance, 
         VkDebugUtilsMessengerEXT debugMessenger, 
         const VkAllocationCallbacks* pAllocator);
 
-    // Getting Physical Device
+    // Device
     VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+    VkPhysicalDeviceFeatures deviceFeatures;
+    VkDevice device;
+    VkQueue graphicsQueue;
+
     void pickPhysicalDevice();
     bool isDeviceSuitable(VkPhysicalDevice device);
+    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+    void createLogicalDevice();
 };
 
 
