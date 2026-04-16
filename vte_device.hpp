@@ -95,11 +95,19 @@ private:
     void createLogicalDevice();
 
     // Swapchains and image settings
+
+    VkSwapchainKHR swapChain;
+    std::vector<VkImage> swapChainImages;
+    std::vector<VkImageView> swapChainImageViews;
+    VkFormat swapChainImageFormat;
+    VkExtent2D swapChainExtent;
+
     SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
     VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
     VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
     void CreateSwapChain();
+    void CreateImageViews();
 };
 
 
