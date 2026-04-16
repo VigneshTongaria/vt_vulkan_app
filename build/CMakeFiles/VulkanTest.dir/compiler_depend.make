@@ -235,7 +235,9 @@ CMakeFiles/VulkanTest.dir/main.cpp.o: /home/vignesh/Documents/vt_vulkan_app/main
   /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h \
   /usr/include/vk_video/vulkan_video_codecs_common.h \
   /usr/include/vulkan/vk_platform.h \
+  /usr/include/vulkan/vulkan.h \
   /usr/include/vulkan/vulkan_core.h \
+  /usr/include/vulkan/vulkan_wayland.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
@@ -486,9 +488,11 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o: /home/vignesh/Documents/vt_vulkan_app/vt
 
 CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_app/vte_device.cpp \
   /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp \
+  /home/vignesh/Documents/vt_vulkan_app/vte_window.hpp \
   /usr/include/GL/gl.h \
   /usr/include/GL/glext.h \
   /usr/include/GLFW/glfw3.h \
+  /usr/include/GLFW/glfw3native.h \
   /usr/include/KHR/khrplatform.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -510,9 +514,19 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/bits/errno.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/locale.h \
   /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
@@ -563,8 +577,10 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/bits/wchar.h \
   /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
+  /usr/include/c++/15.2.1/algorithm \
   /usr/include/c++/15.2.1/backward/binders.h \
   /usr/include/c++/15.2.1/bit \
+  /usr/include/c++/15.2.1/bits/algorithmfwd.h \
   /usr/include/c++/15.2.1/bits/alloc_traits.h \
   /usr/include/c++/15.2.1/bits/allocator.h \
   /usr/include/c++/15.2.1/bits/basic_ios.h \
@@ -578,6 +594,7 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
   /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h \
   /usr/include/c++/15.2.1/bits/enable_special_members.h \
+  /usr/include/c++/15.2.1/bits/erase_if.h \
   /usr/include/c++/15.2.1/bits/exception.h \
   /usr/include/c++/15.2.1/bits/exception_defines.h \
   /usr/include/c++/15.2.1/bits/exception_ptr.h \
@@ -599,6 +616,7 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/bits/move.h \
   /usr/include/c++/15.2.1/bits/nested_exception.h \
   /usr/include/c++/15.2.1/bits/new_allocator.h \
+  /usr/include/c++/15.2.1/bits/node_handle.h \
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
@@ -606,26 +624,36 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
   /usr/include/c++/15.2.1/bits/range_access.h \
+  /usr/include/c++/15.2.1/bits/ranges_algo.h \
+  /usr/include/c++/15.2.1/bits/ranges_algobase.h \
   /usr/include/c++/15.2.1/bits/ranges_base.h \
   /usr/include/c++/15.2.1/bits/ranges_cmp.h \
   /usr/include/c++/15.2.1/bits/ranges_util.h \
   /usr/include/c++/15.2.1/bits/refwrap.h \
   /usr/include/c++/15.2.1/bits/requires_hosted.h \
+  /usr/include/c++/15.2.1/bits/specfun.h \
   /usr/include/c++/15.2.1/bits/std_abs.h \
+  /usr/include/c++/15.2.1/bits/stl_algo.h \
   /usr/include/c++/15.2.1/bits/stl_algobase.h \
   /usr/include/c++/15.2.1/bits/stl_bvector.h \
   /usr/include/c++/15.2.1/bits/stl_construct.h \
   /usr/include/c++/15.2.1/bits/stl_function.h \
+  /usr/include/c++/15.2.1/bits/stl_heap.h \
   /usr/include/c++/15.2.1/bits/stl_iterator.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/15.2.1/bits/stl_multiset.h \
   /usr/include/c++/15.2.1/bits/stl_pair.h \
+  /usr/include/c++/15.2.1/bits/stl_set.h \
+  /usr/include/c++/15.2.1/bits/stl_tempbuf.h \
+  /usr/include/c++/15.2.1/bits/stl_tree.h \
   /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/15.2.1/bits/stl_vector.h \
   /usr/include/c++/15.2.1/bits/streambuf.tcc \
   /usr/include/c++/15.2.1/bits/streambuf_iterator.h \
   /usr/include/c++/15.2.1/bits/string_view.tcc \
   /usr/include/c++/15.2.1/bits/stringfwd.h \
+  /usr/include/c++/15.2.1/bits/uniform_int_dist.h \
   /usr/include/c++/15.2.1/bits/uses_allocator.h \
   /usr/include/c++/15.2.1/bits/uses_allocator_args.h \
   /usr/include/c++/15.2.1/bits/utility.h \
@@ -634,9 +662,11 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/clocale \
+  /usr/include/c++/15.2.1/cmath \
   /usr/include/c++/15.2.1/compare \
   /usr/include/c++/15.2.1/concepts \
   /usr/include/c++/15.2.1/cstddef \
+  /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
   /usr/include/c++/15.2.1/cstring \
@@ -645,6 +675,7 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/debug/assertions.h \
   /usr/include/c++/15.2.1/debug/debug.h \
   /usr/include/c++/15.2.1/exception \
+  /usr/include/c++/15.2.1/ext/aligned_buffer.h \
   /usr/include/c++/15.2.1/ext/alloc_traits.h \
   /usr/include/c++/15.2.1/ext/atomicity.h \
   /usr/include/c++/15.2.1/ext/numeric_traits.h \
@@ -655,16 +686,33 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/c++/15.2.1/iosfwd \
   /usr/include/c++/15.2.1/iostream \
   /usr/include/c++/15.2.1/istream \
+  /usr/include/c++/15.2.1/limits \
+  /usr/include/c++/15.2.1/math.h \
   /usr/include/c++/15.2.1/new \
   /usr/include/c++/15.2.1/numbers \
   /usr/include/c++/15.2.1/optional \
   /usr/include/c++/15.2.1/ostream \
+  /usr/include/c++/15.2.1/pstl/execution_defs.h \
+  /usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/set \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
   /usr/include/c++/15.2.1/string_view \
   /usr/include/c++/15.2.1/system_error \
+  /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
+  /usr/include/c++/15.2.1/tr1/beta_function.tcc \
+  /usr/include/c++/15.2.1/tr1/ell_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/exp_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/gamma.tcc \
+  /usr/include/c++/15.2.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/15.2.1/tr1/legendre_function.tcc \
+  /usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15.2.1/tr1/special_function_util.h \
   /usr/include/c++/15.2.1/tuple \
   /usr/include/c++/15.2.1/type_traits \
   /usr/include/c++/15.2.1/typeinfo \
@@ -687,12 +735,14 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
+  /usr/include/inttypes.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/sched/types.h \
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
@@ -719,7 +769,14 @@ CMakeFiles/VulkanTest.dir/vte_device.cpp.o: /home/vignesh/Documents/vt_vulkan_ap
   /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h \
   /usr/include/vk_video/vulkan_video_codecs_common.h \
   /usr/include/vulkan/vk_platform.h \
+  /usr/include/vulkan/vulkan.h \
   /usr/include/vulkan/vulkan_core.h \
+  /usr/include/vulkan/vulkan_wayland.h \
+  /usr/include/wayland-client-core.h \
+  /usr/include/wayland-client-protocol.h \
+  /usr/include/wayland-client.h \
+  /usr/include/wayland-util.h \
+  /usr/include/wayland-version.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
@@ -924,6 +981,80 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a:
 
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
+
+/usr/lib/libm.so:
+
+/usr/lib/libgcc_s.so.1:
+
+/usr/lib/crti.o:
+
+/usr/lib/Scrt1.o:
+
+/home/vignesh/Documents/vt_vulkan_app/vte_window.cpp:
+
+/usr/include/wayland-version.h:
+
+/usr/include/wayland-util.h:
+
+/usr/include/wayland-client.h:
+
+/usr/include/wayland-client-protocol.h:
+
+/usr/include/wayland-client-core.h:
+
+/usr/include/string.h:
+
+/usr/include/c++/15.2.1/tr1/special_function_util.h:
+
+/usr/include/strings.h:
+
+/usr/include/c++/15.2.1/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/15.2.1/tr1/legendre_function.tcc:
+
+/usr/include/c++/15.2.1/tr1/hypergeometric.tcc:
+
+/usr/include/c++/15.2.1/tr1/gamma.tcc:
+
+/usr/include/c++/15.2.1/tr1/exp_integral.tcc:
+
+/usr/include/c++/15.2.1/tr1/ell_integral.tcc:
+
+/usr/include/c++/15.2.1/tr1/bessel_function.tcc:
+
+/usr/include/c++/15.2.1/set:
+
+/usr/include/c++/15.2.1/pstl/execution_defs.h:
+
+/usr/include/c++/15.2.1/math.h:
+
+/usr/include/c++/15.2.1/ext/aligned_buffer.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/c++/15.2.1/cstring:
+
+/usr/include/c++/15.2.1/cstdint:
+
+/usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h:
+
+/usr/include/c++/15.2.1/bits/stl_tree.h:
+
+/usr/include/c++/15.2.1/bits/stl_set.h:
+
+/usr/include/c++/15.2.1/bits/stl_multiset.h:
+
+/usr/include/c++/15.2.1/bits/specfun.h:
+
+/usr/include/c++/15.2.1/bits/ranges_algo.h:
+
+/usr/include/c++/15.2.1/bits/erase_if.h:
+
 /usr/include/c++/15.2.1/bits/ranges_base.h:
 
 /usr/include/c++/15.2.1/bits/postypes.h:
@@ -940,6 +1071,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/bits/types/wint_t.h:
 
+/usr/include/c++/15.2.1/bits/uniform_int_dist.h:
+
 /usr/include/c++/15.2.1/cwchar:
 
 /usr/include/c++/15.2.1/bits/locale_facets.h:
@@ -947,6 +1080,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/c++/15.2.1/ext/string_conversions.h:
 
 /usr/include/c++/15.2.1/cstdio:
+
+/usr/include/math.h:
 
 /usr/include/c++/15.2.1/bits/invoke.h:
 
@@ -958,7 +1093,11 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/c++/15.2.1/bits/exception_ptr.h:
 
-/usr/include/c++/15.2.1/bits/exception.h:
+/usr/lib/libc.so:
+
+/usr/include/c++/15.2.1/tr1/beta_function.tcc:
+
+/usr/include/bits/pthreadtypes.h:
 
 /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h:
 
@@ -972,11 +1111,11 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/vk_video/vulkan_video_codec_h265std_decode.h:
 
-/usr/include/c++/15.2.1/bits/charconv.h:
-
 /usr/include/c++/15.2.1/bits/basic_ios.tcc:
 
 /usr/include/c++/15.2.1/cerrno:
+
+/usr/include/bits/libm-simd-decl-stubs.h:
 
 /usr/include/c++/15.2.1/bits/alloc_traits.h:
 
@@ -1004,13 +1143,17 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/c++/15.2.1/backward/binders.h:
 
-/usr/include/bits/types/timer_t.h:
+/usr/include/c++/15.2.1/tr1/poly_hermite.tcc:
 
-/usr/lib/Scrt1.o:
+/usr/include/bits/types/timer_t.h:
 
 /usr/include/c++/15.2.1/bits/char_traits.h:
 
 /usr/include/vk_video/vulkan_video_codec_h265std.h:
+
+/usr/include/c++/15.2.1/bits/exception.h:
+
+/usr/include/bits/math-vector.h:
 
 /usr/include/bits/types/struct_tm.h:
 
@@ -1025,6 +1168,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/bits/types/struct_sched_param.h:
 
 /usr/include/c++/15.2.1/bits/functexcept.h:
+
+/usr/include/c++/15.2.1/bits/ranges_algobase.h:
 
 /usr/include/c++/15.2.1/streambuf:
 
@@ -1062,11 +1207,11 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
 
-/usr/lib/crti.o:
-
 /usr/include/c++/15.2.1/bits/cpp_type_traits.h:
 
 /usr/include/KHR/khrplatform.h:
+
+/usr/include/c++/15.2.1/limits:
 
 /usr/include/c++/15.2.1/bits/istream.tcc:
 
@@ -1077,6 +1222,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h:
 
 /usr/include/asm-generic/int-ll64.h:
+
+/usr/include/bits/mathcalls-macros.h:
 
 /usr/include/asm-generic/errno-base.h:
 
@@ -1118,8 +1265,6 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/GL/glext.h:
 
-/home/vignesh/Documents/vt_vulkan_app/vte_window.hpp:
-
 /usr/include/bits/libc-header-start.h:
 
 /usr/include/c++/15.2.1/ostream:
@@ -1127,6 +1272,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/c++/15.2.1/bits/locale_classes.tcc:
 
 /usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/15.2.1/bits/stl_tempbuf.h:
 
 /usr/include/stdc-predef.h:
 
@@ -1139,6 +1286,10 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/bits/stdint-intn.h:
 
 /usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/fp-logb.h:
+
+/usr/include/c++/15.2.1/tr1/riemann_zeta.tcc:
 
 /usr/include/bits/types/__fpos_t.h:
 
@@ -1182,6 +1333,10 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/bits/setjmp.h:
 
+/usr/lib/crtn.o:
+
+/usr/include/c++/15.2.1/bits/functional_hash.h:
+
 /usr/include/bits/types/cookie_io_functions_t.h:
 
 /usr/include/c++/15.2.1/bits/stl_algobase.h:
@@ -1206,6 +1361,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/asm/errno.h:
 
+/usr/include/c++/15.2.1/bits/node_handle.h:
+
 /usr/include/c++/15.2.1/bits/basic_string.tcc:
 
 /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp:
@@ -1221,6 +1378,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/c++/15.2.1/string:
 
 /usr/include/sys/cdefs.h:
+
+/usr/include/bits/flt-eval-method.h:
 
 /usr/include/features.h:
 
@@ -1252,6 +1411,8 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/c++/15.2.1/bits/stl_vector.h:
 
+/usr/include/c++/15.2.1/bits/stl_heap.h:
+
 /usr/include/asm-generic/bitsperlong.h:
 
 /usr/include/c++/15.2.1/bits/ranges_util.h:
@@ -1269,6 +1430,10 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 /usr/include/bits/typesizes.h:
 
 /usr/include/c++/15.2.1/bits/string_view.tcc:
+
+/usr/lib/libstdc++.so:
+
+/usr/include/locale.h:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
@@ -1294,6 +1459,10 @@ CMakeFiles/VulkanTest.dir/main.cpp.o:
 
 /usr/include/wchar.h:
 
+/usr/lib/libgcc_s.so:
+
+/usr/include/c++/15.2.1/cstddef:
+
 CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /usr/include/c++/15.2.1/compare:
@@ -1301,8 +1470,6 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 /usr/include/c++/15.2.1/cwctype:
 
 /usr/include/c++/15.2.1/istream:
-
-/usr/include/strings.h:
 
 /usr/include/c++/15.2.1/debug/assertions.h:
 
@@ -1327,6 +1494,8 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 /usr/include/c++/15.2.1/iosfwd:
 
 /usr/include/c++/15.2.1/optional:
+
+/usr/include/bits/mathcalls.h:
 
 /usr/include/c++/15.2.1/iostream:
 
@@ -1354,6 +1523,10 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /usr/include/features-time64.h:
 
+/home/vignesh/Documents/vt_vulkan_app/vte_window.hpp:
+
+/usr/include/c++/15.2.1/bits/algorithmfwd.h:
+
 /usr/include/linux/errno.h:
 
 /usr/include/bits/types/FILE.h:
@@ -1364,13 +1537,13 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /usr/include/linux/sched/types.h:
 
+/usr/include/c++/15.2.1/bits/stl_algo.h:
+
 /usr/include/c++/15.2.1/bits/stl_uninitialized.h:
 
 /usr/include/pthread.h:
 
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
+/usr/include/c++/15.2.1/cmath:
 
 /usr/include/endian.h:
 
@@ -1394,13 +1567,13 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /usr/include/vk_video/vulkan_video_codec_vp9std.h:
 
-/usr/include/locale.h:
-
-/usr/lib/libstdc++.so:
-
 /usr/include/c++/15.2.1/bits/ptr_traits.h:
 
 /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h:
+
+/usr/include/vk_video/vulkan_video_codec_av1std_encode.h:
+
+/usr/include/vulkan/vulkan.h:
 
 /usr/lib/libvulkan.so:
 
@@ -1408,11 +1581,9 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /usr/include/vulkan/vulkan_core.h:
 
+/usr/include/vulkan/vulkan_wayland.h:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h:
-
-/usr/include/vk_video/vulkan_video_codec_av1std_encode.h:
-
-/usr/include/vulkan/vulkan.h:
 
 /usr/include/c++/15.2.1/ext/atomicity.h:
 
@@ -1420,28 +1591,20 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o:
 
 /home/vignesh/Documents/vt_vulkan_app/vte_device.cpp:
 
-/usr/include/c++/15.2.1/cstring:
+/usr/include/wctype.h:
 
-/usr/include/string.h:
+/usr/include/GLFW/glfw3native.h:
 
-/home/vignesh/Documents/vt_vulkan_app/vte_window.cpp:
+/usr/include/sched.h:
 
-/usr/include/c++/15.2.1/bits/functional_hash.h:
+/usr/include/bits/fp-fast.h:
 
-/usr/lib/crtn.o:
+/usr/include/bits/iscanonical.h:
 
-/usr/include/bits/pthreadtypes.h:
+/usr/include/c++/15.2.1/bits/charconv.h:
 
-/usr/lib/libc.so:
+/usr/include/bits/mathcalls-helper-functions.h:
 
-/usr/include/c++/15.2.1/cstddef:
+/usr/include/bits/mathcalls-narrow.h:
 
-/usr/lib/libgcc_s.so:
-
-/usr/lib/libgcc_s.so.1:
-
-/usr/lib/libm.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
+/usr/include/c++/15.2.1/algorithm:

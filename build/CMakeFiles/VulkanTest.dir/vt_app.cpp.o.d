@@ -133,7 +133,7 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
  /usr/include/c++/15.2.1/bits/uses_allocator_args.h \
  /usr/include/c++/15.2.1/tuple /usr/include/c++/15.2.1/bits/ranges_util.h \
  /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp \
- /usr/include/vulkan/vulkan_core.h /usr/include/c++/15.2.1/vector \
+ /usr/include/c++/15.2.1/vector \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \
