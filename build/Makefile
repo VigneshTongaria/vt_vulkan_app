@@ -201,6 +201,30 @@ vte_device.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_device.cpp.s
 .PHONY : vte_device.cpp.s
 
+vte_graphicspp.o: vte_graphicspp.cpp.o
+.PHONY : vte_graphicspp.o
+
+# target to build an object file
+vte_graphicspp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_graphicspp.cpp.o
+.PHONY : vte_graphicspp.cpp.o
+
+vte_graphicspp.i: vte_graphicspp.cpp.i
+.PHONY : vte_graphicspp.i
+
+# target to preprocess a source file
+vte_graphicspp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_graphicspp.cpp.i
+.PHONY : vte_graphicspp.cpp.i
+
+vte_graphicspp.s: vte_graphicspp.cpp.s
+.PHONY : vte_graphicspp.s
+
+# target to generate assembly for a file
+vte_graphicspp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/VulkanTest.dir/build.make CMakeFiles/VulkanTest.dir/vte_graphicspp.cpp.s
+.PHONY : vte_graphicspp.cpp.s
+
 vte_window.o: vte_window.cpp.o
 .PHONY : vte_window.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... vte_device.o"
 	@echo "... vte_device.i"
 	@echo "... vte_device.s"
+	@echo "... vte_graphicspp.o"
+	@echo "... vte_graphicspp.i"
+	@echo "... vte_graphicspp.s"
 	@echo "... vte_window.o"
 	@echo "... vte_window.i"
 	@echo "... vte_window.s"

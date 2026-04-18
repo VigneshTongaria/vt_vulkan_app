@@ -22,16 +22,21 @@ VteDevice::VteDevice(std::string name, vte::Vtewindow &window)
 }
 
 VteDevice::~VteDevice() {
-  for (auto imageView : swapChainImageViews) {
-    vkDestroyImageView(device, imageView, nullptr);
-  }
-  vkDestroySwapchainKHR(device, swapChain, nullptr);
-  vkDestroyDevice(device, nullptr);
-  if (enableValidationLayer) {
-    destroyDebugUtilsMessengerEXT(vkinstance, debugMessenger, nullptr);
-  }
 
-  vkDestroyInstance(vkinstance, nullptr);
+}
+
+void VteDevice::cleanDevice()
+{
+    for (auto imageView : swapChainImageViews) {
+      vkDestroyImageView(device, imageView, nullptr);
+    }
+    vkDestroySwapchainKHR(device, swapChain, nullptr);
+    vkDestroyDevice(device, nullptr);
+    if (enableValidationLayer) {
+      destroyDebugUtilsMessengerEXT(vkinstance, debugMessenger, nullptr);
+    }
+
+    vkDestroyInstance(vkinstance, nullptr);
 }
 
 VkDevice &VteDevice::getVkDevice() { return device; }
@@ -346,6 +351,10 @@ void VteDevice::createLogicalDevice() {
   } else {
     deviceCreateInfo.enabledLayerCount = 0;
   }
+
+  // Specify to vulkan we are not looking for mobile/other application
+  deviceFeatures.textureCompressionASTC_LDR = VK_FALSE;
+  deviceFeatures.textureCompressionETC2 = VK_FALSE;
 
   if (vkCreateDevice(physicalDevice, &deviceCreateInfo, nullptr, &device) !=
       VK_SUCCESS) {

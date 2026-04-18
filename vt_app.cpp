@@ -8,6 +8,12 @@ namespace vte
         appname = appName;
     }
 
+    Vtapp::~Vtapp()
+    {
+        graphicsPP.cleanPP();
+        device.cleanDevice();
+    }
+
     void Vtapp::run()
     {
         while(!appwindow.ShouldClose())

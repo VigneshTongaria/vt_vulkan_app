@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vulkan/vulkan_core.h>
 #define VK_USE_PLATFORM_WAYLAND_KHR
 #include "vte_window.hpp"
@@ -26,6 +28,7 @@ class VteDevice {
 public:
   VteDevice(std::string name, vte::Vtewindow &window);
   ~VteDevice();
+  void cleanDevice();
 
   VkInstance vkinstance;
   VkDebugUtilsMessengerEXT debugMessenger;

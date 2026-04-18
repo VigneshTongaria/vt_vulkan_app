@@ -2,6 +2,7 @@
 
 #include"vte_window.hpp"
 #include "vte_device.hpp"
+#include "vte_graphicspp.hpp"
 
 namespace vte
 {
@@ -9,6 +10,7 @@ namespace vte
     {
         public :
         Vtapp(std::string appName);
+        ~Vtapp();
         void run();
         static constexpr u_int32_t width = 800;
         static constexpr u_int32_t height = 600;
@@ -17,5 +19,6 @@ namespace vte
         Vtewindow appwindow {width,height,"vt game engine"};
         std::string appname;
         VteDevice device{appname,appwindow};
+        VteGraphicsPP graphicsPP{device};
     };
 }

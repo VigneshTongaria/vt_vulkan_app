@@ -3,11 +3,13 @@ project(VulkanTest)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(SOURCE_FILES 
+set(SOURCE_FILES
    main.cpp
    vt_app.cpp
    vte_window.cpp
    vte_device.cpp
+   vte_graphicspp.cpp
+   vte_utlis.hpp
 )
 
 # Find dependencies
@@ -24,4 +26,4 @@ find_path(GLM_INCLUDE_DIR glm/glm.hpp)
 target_include_directories(VulkanTest PRIVATE ${GLM_INCLUDE_DIR})
 
 # Check if the build type is Debug
-# add_definitions(-DNDEBUG)
+add_definitions(-DNDEBUG)
