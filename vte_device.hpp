@@ -27,8 +27,18 @@ public:
   VteDevice(std::string name, vte::Vtewindow &window);
   ~VteDevice();
 
+  VkInstance vkinstance;
+  VkDebugUtilsMessengerEXT debugMessenger;
+
   vte::Vtewindow vteWindow;
-  VkDevice& getVkDevice();
+  VkDevice &getVkDevice();
+
+  VkSurfaceKHR surface;
+  VkSwapchainKHR swapChain;
+  std::vector<VkImage> swapChainImages;
+  std::vector<VkImageView> swapChainImageViews;
+  VkFormat swapChainImageFormat;
+  VkExtent2D swapChainExtent;
 
 private:
   std::string name;
@@ -44,9 +54,6 @@ private:
 #else
   const bool enableValidationLayer = false;
 #endif
-
-  VkInstance vkinstance;
-  VkDebugUtilsMessengerEXT debugMessenger;
 
   // Vulkan instance
   void createInstance();
@@ -72,13 +79,12 @@ private:
                                      VkDebugUtilsMessengerEXT debugMessenger,
                                      const VkAllocationCallbacks *pAllocator);
 
-  VkSurfaceKHR surface;
   void createSurface();
 
   // Device
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
   VkPhysicalDeviceFeatures deviceFeatures;
-  VkDevice device =VK_NULL_HANDLE;
+  VkDevice device = VK_NULL_HANDLE;
   VkQueue graphicsQueue;
   VkQueue presentQueue;
 
@@ -89,12 +95,6 @@ private:
   void createLogicalDevice();
 
   // Swapchains and image settings
-
-  VkSwapchainKHR swapChain;
-  std::vector<VkImage> swapChainImages;
-  std::vector<VkImageView> swapChainImageViews;
-  VkFormat swapChainImageFormat;
-  VkExtent2D swapChainExtent;
 
   SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
   VkSurfaceFormatKHR chooseSwapSurfaceFormat(
