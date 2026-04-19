@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vte_command.hpp"
 #include"vte_window.hpp"
 #include "vte_device.hpp"
 #include "vte_graphicspp.hpp"
@@ -20,5 +21,6 @@ namespace vte
         std::string appname;
         VteDevice device{appname,appwindow};
         VteGraphicsPP graphicsPP{device};
+        VteCommand commandPool{device,graphicsPP};
     };
 }

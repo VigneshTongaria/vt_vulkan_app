@@ -1,23 +1,21 @@
 #define GLFW_INCLUDE_VULKAN
 #include "vt_app.hpp"
-namespace vte
+namespace vte {
+Vtapp::Vtapp(
+    std::string appName) // : appwindow(width,height,appName + "window")
 {
-    Vtapp::Vtapp(std::string appName) // : appwindow(width,height,appName + "window")
-    {
-        appname = appName;
-    }
+  appname = appName;
+}
 
-    Vtapp::~Vtapp()
-    {
-        graphicsPP.cleanPP();
-        device.cleanDevice();
-    }
+Vtapp::~Vtapp() {
+  commandPool.cleanCommandPools();
+  graphicsPP.cleanPP();
+  device.cleanDevice();
+}
 
-    void Vtapp::run()
-    {
-        while(!appwindow.ShouldClose())
-        {
-            glfwPollEvents();
-        }
-    }
+void Vtapp::run() {
+  while (!appwindow.ShouldClose()) {
+    glfwPollEvents();
+  }
+}
 } // namespace vte

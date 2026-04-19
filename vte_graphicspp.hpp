@@ -8,6 +8,9 @@ class VteGraphicsPP {
 public:
   VteGraphicsPP(VteDevice &device);
   ~VteGraphicsPP();
+  VkPipeline graphicsPipeLine;
+  VkRenderPass renderPass;
+  std::vector<VkFramebuffer> swapChainFrameBuffers;
 
   void cleanPP();
 
@@ -16,9 +19,6 @@ private:
   VkShaderModule fragShaderModule;
   VkShaderModule vertShaderModule;
   VkPipelineLayout pipeLineLayout;
-  VkRenderPass renderPass;
-  VkPipeline graphicsPipeLine;
-  std::vector<VkFramebuffer> swapChainFrameBuffers;
   void createGraphicsPipeLine();
   void createRenderPass();
   void createFrameBuffers();

@@ -21,7 +21,7 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 16,
+				"line" : 17,
 				"parent" : 0
 			},
 			{
@@ -31,7 +31,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 721,
+				"line" : 728,
 				"parent" : 2
 			}
 		]
@@ -41,15 +41,15 @@
 		"major" : 2,
 		"minor" : 10
 	},
-	"id" : "Vulkan::Vulkan::@6890427a1f51a3e7e1df",
+	"id" : "Vulkan::Headers::@6890427a1f51a3e7e1df",
 	"imported" : true,
 	"local" : true,
-	"name" : "Vulkan::Vulkan",
+	"name" : "Vulkan::Headers",
 	"paths" : 
 	{
 		"build" : ".",
 		"source" : "."
 	},
 	"sources" : [],
-	"type" : "UNKNOWN_LIBRARY"
+	"type" : "INTERFACE_LIBRARY"
 }

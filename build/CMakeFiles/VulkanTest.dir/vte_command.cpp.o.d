@@ -1,7 +1,6 @@
-CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
- /home/vignesh/Documents/vt_vulkan_app/vt_app.cpp \
+CMakeFiles/VulkanTest.dir/vte_command.cpp.o: \
+ /home/vignesh/Documents/vt_vulkan_app/vte_command.cpp \
  /usr/include/stdc-predef.h \
- /home/vignesh/Documents/vt_vulkan_app/vt_app.hpp \
  /home/vignesh/Documents/vt_vulkan_app/vte_command.hpp \
  /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp \
  /usr/include/vulkan/vulkan_core.h /usr/include/vulkan/vk_platform.h \
@@ -33,9 +32,7 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
  /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h \
  /usr/include/vk_video/vulkan_video_codec_vp9std.h \
  /home/vignesh/Documents/vt_vulkan_app/vte_window.hpp \
- /usr/include/GLFW/glfw3.h /usr/include/vulkan/vulkan.h \
- /usr/include/vulkan/vulkan_core.h /usr/include/vulkan/vulkan_wayland.h \
- /usr/include/GL/gl.h /usr/include/GL/glext.h \
+ /usr/include/GLFW/glfw3.h /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h /usr/include/c++/15.2.1/string \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -145,6 +142,7 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \
- /usr/include/c++/15.2.1/bits/vector.tcc \
+ /usr/include/c++/15.2.1/bits/vector.tcc /usr/include/vulkan/vulkan.h \
+ /usr/include/vulkan/vulkan_core.h /usr/include/vulkan/vulkan_wayland.h \
  /home/vignesh/Documents/vt_vulkan_app/vte_graphicspp.hpp \
- /usr/include/c++/15.2.1/cstdint
+ /usr/include/c++/15.2.1/cstdint /usr/include/c++/15.2.1/stdexcept

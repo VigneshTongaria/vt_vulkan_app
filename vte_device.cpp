@@ -394,14 +394,13 @@ void VteDevice::CreateSwapChain() {
   swapChainCreateInfo.imageArrayLayers = 1;
   swapChainCreateInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-  QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
-  uint32_t queueFamilies[] = {indices.graphicsFamily.value(),
-                              indices.presentFamily.value()};
+  uint32_t queueFamiliesArr[] = {queueFamilies.graphicsFamily.value(),
+                              queueFamilies.presentFamily.value()};
 
-  if (indices.graphicsFamily != indices.presentFamily) {
+  if (queueFamilies.graphicsFamily != queueFamilies.presentFamily) {
     swapChainCreateInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
     swapChainCreateInfo.queueFamilyIndexCount = 2;
-    swapChainCreateInfo.pQueueFamilyIndices = queueFamilies;
+    swapChainCreateInfo.pQueueFamilyIndices = queueFamiliesArr;
   } else {
     swapChainCreateInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
     swapChainCreateInfo.queueFamilyIndexCount = 0;
