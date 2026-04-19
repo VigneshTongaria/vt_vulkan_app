@@ -1,5 +1,6 @@
 #include "vte_command.hpp"
 #include "vte_graphicspp.hpp"
+#include <cstdint>
 #include <stdexcept>
 #include <vulkan/vulkan_core.h>
 
@@ -7,12 +8,16 @@ VteCommand::VteCommand(VteDevice &device, VteGraphicsPP &graphicsPP)
     : device(device), graphicsPP(graphicsPP) {
   createCommandPool();
   createCommandBuffer();
+  createSyncObjects();
 }
 
 VteCommand::~VteCommand() {}
 
 void VteCommand::cleanCommandPools() {
   vkDestroyCommandPool(device.getVkDevice(), commandPool, nullptr);
+  vkDestroySemaphore(device.getVkDevice(), imageAvailaibleSemaphore, nullptr);
+  vkDestroySemaphore(device.getVkDevice(), renderFinishedSemaphore, nullptr);
+  vkDestroyFence(device.getVkDevice(), inFlightFence, nullptr);
 }
 
 void VteCommand::createCommandPool() {
@@ -25,6 +30,52 @@ void VteCommand::createCommandPool() {
                           &commandPool) != VK_SUCCESS) {
     throw std::runtime_error("failed to create command pool!");
   }
+}
+
+void VteCommand::drawFrame() {
+  vkWaitForFences(device.getVkDevice(), 1, &inFlightFence, VK_FALSE,
+                  UINT64_MAX);
+
+  vkResetFences(device.getVkDevice(), 1, &inFlightFence);
+
+  uint32_t imageIndex;
+  vkAcquireNextImageKHR(device.getVkDevice(), device.swapChain, UINT64_MAX,
+                        imageAvailaibleSemaphore, VK_NULL_HANDLE, &imageIndex);
+
+  vkResetCommandBuffer(commandBuffer, 0);
+
+  recordCommandBuffer(commandBuffer, imageIndex);
+
+  VkSubmitInfo submitInfo{};
+  VkSemaphore waitSemaphores[] = {imageAvailaibleSemaphore};
+  VkSemaphore signalSemaphores[] = {renderFinishedSemaphore};
+  VkPipelineStageFlags waitStages[] = {
+      VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
+  submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+  submitInfo.commandBufferCount = 1;
+  submitInfo.pCommandBuffers = &commandBuffer;
+  submitInfo.waitSemaphoreCount = 1;
+  submitInfo.pWaitSemaphores = waitSemaphores;
+  submitInfo.pWaitDstStageMask = waitStages;
+  submitInfo.signalSemaphoreCount = 1;
+  submitInfo.pSignalSemaphores = signalSemaphores;
+
+  if (vkQueueSubmit(device.graphicsQueue, 1, &submitInfo, inFlightFence) !=
+      VK_SUCCESS) {
+    throw std::runtime_error("failed to submit draw command buffer!");
+  }
+
+  VkPresentInfoKHR presentInfo{};
+  presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+  presentInfo.waitSemaphoreCount = 1;
+  presentInfo.pWaitSemaphores = signalSemaphores;
+
+  VkSwapchainKHR swapChains[] = {device.swapChain};
+  presentInfo.swapchainCount = 1;
+  presentInfo.pSwapchains = swapChains;
+  presentInfo.pImageIndices = &imageIndex;
+
+  vkQueuePresentKHR(device.presentQueue, &presentInfo);
 }
 
 void VteCommand::createCommandBuffer() {
@@ -47,7 +98,12 @@ void VteCommand::recordCommandBuffer(VkCommandBuffer commandBuffer,
   bBeginInfo.flags = 0;
   bBeginInfo.pInheritanceInfo = nullptr;
 
+  if (vkBeginCommandBuffer(commandBuffer, &bBeginInfo) != VK_SUCCESS) {
+      throw std::runtime_error("failed to begin recording command buffer!");
+  }
+
   VkRenderPassBeginInfo renderPassInfo{};
+
   renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
   renderPassInfo.renderPass = graphicsPP.renderPass;
   renderPassInfo.framebuffer = graphicsPP.swapChainFrameBuffers[imageIndex];
@@ -80,7 +136,27 @@ void VteCommand::recordCommandBuffer(VkCommandBuffer commandBuffer,
 
   vkCmdDraw(commandBuffer, 3, 1, 0, 0);
 
+  vkCmdEndRenderPass(commandBuffer);
+
   if (vkEndCommandBuffer(commandBuffer) != VK_SUCCESS) {
     throw std::runtime_error("failed to record command buffer!");
+  }
+}
+
+void VteCommand::createSyncObjects() {
+  VkSemaphoreCreateInfo semaphoreInfo{};
+  semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+  VkFenceCreateInfo fenceInfo{};
+  fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+  fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+  if (vkCreateSemaphore(device.getVkDevice(), &semaphoreInfo, nullptr,
+                        &imageAvailaibleSemaphore) ||
+      vkCreateSemaphore(device.getVkDevice(), &semaphoreInfo, nullptr,
+                        &renderFinishedSemaphore) ||
+      vkCreateFence(device.getVkDevice(), &fenceInfo, nullptr,
+                    &inFlightFence) != VK_SUCCESS) {
+    std::runtime_error("failed to create sync objects");
   }
 }

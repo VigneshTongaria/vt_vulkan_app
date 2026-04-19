@@ -19,6 +19,7 @@ VteDevice::VteDevice(std::string name, vte::Vtewindow &window)
   pickPhysicalDevice();
   createLogicalDevice();
   CreateSwapChain();
+  CreateImageViews();
 }
 
 VteDevice::~VteDevice() {

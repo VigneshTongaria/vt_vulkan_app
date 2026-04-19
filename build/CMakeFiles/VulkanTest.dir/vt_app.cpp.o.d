@@ -1,10 +1,7 @@
 CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
  /home/vignesh/Documents/vt_vulkan_app/vt_app.cpp \
- /usr/include/stdc-predef.h \
- /home/vignesh/Documents/vt_vulkan_app/vt_app.hpp \
- /home/vignesh/Documents/vt_vulkan_app/vte_command.hpp \
- /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp \
- /usr/include/vulkan/vulkan_core.h /usr/include/vulkan/vk_platform.h \
+ /usr/include/stdc-predef.h /usr/include/vulkan/vulkan_core.h \
+ /usr/include/vulkan/vk_platform.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
@@ -32,6 +29,9 @@ CMakeFiles/VulkanTest.dir/vt_app.cpp.o: \
  /usr/include/vk_video/vulkan_video_codec_vp9std.h \
  /usr/include/vk_video/vulkan_video_codec_vp9std_decode.h \
  /usr/include/vk_video/vulkan_video_codec_vp9std.h \
+ /home/vignesh/Documents/vt_vulkan_app/vt_app.hpp \
+ /home/vignesh/Documents/vt_vulkan_app/vte_command.hpp \
+ /home/vignesh/Documents/vt_vulkan_app/vte_device.hpp \
  /home/vignesh/Documents/vt_vulkan_app/vte_window.hpp \
  /usr/include/GLFW/glfw3.h /usr/include/vulkan/vulkan.h \
  /usr/include/vulkan/vulkan_core.h /usr/include/vulkan/vulkan_wayland.h \

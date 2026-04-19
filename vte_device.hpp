@@ -43,6 +43,8 @@ public:
   std::vector<VkImageView> swapChainImageViews;
   VkFormat swapChainImageFormat;
   VkExtent2D swapChainExtent;
+  VkQueue graphicsQueue;
+  VkQueue presentQueue;
 
 private:
   std::string name;
@@ -89,8 +91,6 @@ private:
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
   VkPhysicalDeviceFeatures deviceFeatures;
   VkDevice device = VK_NULL_HANDLE;
-  VkQueue graphicsQueue;
-  VkQueue presentQueue;
 
   void pickPhysicalDevice();
   bool isDeviceSuitable(VkPhysicalDevice device);

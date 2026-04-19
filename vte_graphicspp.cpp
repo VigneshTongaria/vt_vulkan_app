@@ -208,6 +208,17 @@ void VteGraphicsPP::createRenderPass() {
   rpCreateInfo.subpassCount = 1;
   rpCreateInfo.pSubpasses = &subpass;
 
+  VkSubpassDependency spDependency{};
+  spDependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+  spDependency.dstSubpass = 0;
+  spDependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+  spDependency.srcAccessMask = 0;
+  spDependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+  spDependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+
+  rpCreateInfo.dependencyCount = 1;
+  rpCreateInfo.pDependencies = &spDependency;
+
   if (vkCreateRenderPass(device.getVkDevice(), &rpCreateInfo, nullptr,
                          &renderPass) != VK_SUCCESS) {
     throw std::runtime_error("failed to create render pass!");

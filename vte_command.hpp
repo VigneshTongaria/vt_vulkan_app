@@ -10,13 +10,18 @@ public:
   VteCommand(VteDevice &device, VteGraphicsPP& graphicsPP);
   ~VteCommand();
   void cleanCommandPools();
+  void drawFrame();
   VkCommandPool commandPool;
   VkCommandBuffer commandBuffer;
 
 private:
   void createCommandPool();
   void createCommandBuffer();
+  void createSyncObjects();
   void recordCommandBuffer(VkCommandBuffer commandBuffer,uint32_t imageIndex);
   VteDevice device;
   VteGraphicsPP graphicsPP;
+  VkSemaphore imageAvailaibleSemaphore;
+  VkSemaphore renderFinishedSemaphore;
+  VkFence inFlightFence;
 };
