@@ -253,6 +253,9 @@ void VteDevice::pickPhysicalDevice() {
   if (physicalDevice == VK_NULL_HANDLE) {
     throw std::runtime_error("failed to find suitable physical device");
   }
+  else {
+      queueFamilies = findQueueFamilies(physicalDevice);
+  }
 }
 
 bool VteDevice::isDeviceSuitable(VkPhysicalDevice device) {
@@ -314,12 +317,11 @@ QueueFamilyIndices VteDevice::findQueueFamilies(VkPhysicalDevice device) {
 }
 
 void VteDevice::createLogicalDevice() {
-  QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
   std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 
-  std::set<uint32_t> uniqueQueueFamilies = {indices.graphicsFamily.value(),
-                                            indices.presentFamily.value()};
+  std::set<uint32_t> uniqueQueueFamilies = {queueFamilies.graphicsFamily.value(),
+                                            queueFamilies.presentFamily.value()};
 
   float queuePriority = 1.0f;
   for (uint32_t queueFamily : uniqueQueueFamilies) {
@@ -361,8 +363,8 @@ void VteDevice::createLogicalDevice() {
     throw std::runtime_error("failed to create logical device!");
   }
 
-  vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
-  vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
+  vkGetDeviceQueue(device, queueFamilies.graphicsFamily.value(), 0, &graphicsQueue);
+  vkGetDeviceQueue(device, queueFamilies.presentFamily.value(), 0, &presentQueue);
 }
 
 void VteDevice::CreateSwapChain() {

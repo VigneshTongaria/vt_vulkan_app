@@ -16,6 +16,11 @@ private:
   VkShaderModule fragShaderModule;
   VkShaderModule vertShaderModule;
   VkPipelineLayout pipeLineLayout;
+  VkRenderPass renderPass;
+  VkPipeline graphicsPipeLine;
+  std::vector<VkFramebuffer> swapChainFrameBuffers;
   void createGraphicsPipeLine();
+  void createRenderPass();
+  void createFrameBuffers();
   VkShaderModule createShaderModule(const std::vector<char> &code);
 };

@@ -10,6 +10,7 @@ set(SOURCE_FILES
    vte_device.cpp
    vte_graphicspp.cpp
    vte_utlis.hpp
+   vte_command.cpp
 )
 
 # Find dependencies
@@ -26,4 +27,4 @@ find_path(GLM_INCLUDE_DIR glm/glm.hpp)
 target_include_directories(VulkanTest PRIVATE ${GLM_INCLUDE_DIR})
 
 # Check if the build type is Debug
-add_definitions(-DNDEBUG)
+# add_definitions(-DNDEBUG)

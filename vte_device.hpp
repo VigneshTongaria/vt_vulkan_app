@@ -35,6 +35,7 @@ public:
 
   vte::Vtewindow vteWindow;
   VkDevice &getVkDevice();
+  QueueFamilyIndices queueFamilies;
 
   VkSurfaceKHR surface;
   VkSwapchainKHR swapChain;
