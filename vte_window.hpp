@@ -1,6 +1,9 @@
 #pragma once
 #include <GLFW/glfw3.h>
+#include <functional>
 #include <string>
+#include <vector>
+
 namespace vte {
 class Vtewindow {
 public:
@@ -10,9 +13,12 @@ public:
   bool ShouldClose() { return glfwWindowShouldClose(window); }
   GLFWwindow *window = nullptr;
 
+  static std::vector<std::function<void(int, int)>> resizeCallbacks;
+
 private:
   void initwindow();
   u_int32_t width, height;
   std::string windowname;
+  static void frameBufferResizeCallback(GLFWwindow* window, int width, int height);
 };
 } // namespace vte

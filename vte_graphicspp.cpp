@@ -18,9 +18,19 @@ void VteGraphicsPP::cleanPP() {
   vkDestroyRenderPass(device.getVkDevice(), renderPass, nullptr);
   vkDestroyPipeline(device.getVkDevice(), graphicsPipeLine, nullptr);
 
-  for (auto fb : swapChainFrameBuffers) {
-      vkDestroyFramebuffer(device.getVkDevice(),fb, nullptr);
-  }
+  destroyFrameBuffers();
+}
+
+void VteGraphicsPP::recreateFrameBuffers()
+{
+    createFrameBuffers();
+}
+
+void VteGraphicsPP::destroyFrameBuffers()
+{
+    for (auto fb : swapChainFrameBuffers) {
+        vkDestroyFramebuffer(device.getVkDevice(),fb, nullptr);
+    }
 }
 
 void VteGraphicsPP::createGraphicsPipeLine() {

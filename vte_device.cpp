@@ -1,6 +1,7 @@
 #include "vte_device.hpp"
 #include <GLFW/glfw3.h>
 #include <algorithm>
+#include <cstddef>
 #include <cstdint>
 #include <cstring>
 #include <iostream>
@@ -22,22 +23,28 @@ VteDevice::VteDevice(std::string name, vte::Vtewindow &window)
   CreateImageViews();
 }
 
-VteDevice::~VteDevice() {
+VteDevice::~VteDevice() {}
 
+void VteDevice::cleanDevice() {
+  for (auto imageView : swapChainImageViews) {
+    vkDestroyImageView(device, imageView, nullptr);
+  }
+  vkDestroySwapchainKHR(device, swapChain, nullptr);
+  vkDestroyDevice(device, nullptr);
+  if (enableValidationLayer) {
+    destroyDebugUtilsMessengerEXT(vkinstance, debugMessenger, nullptr);
+  }
+
+  vkDestroyInstance(vkinstance, nullptr);
 }
 
-void VteDevice::cleanDevice()
-{
-    for (auto imageView : swapChainImageViews) {
-      vkDestroyImageView(device, imageView, nullptr);
-    }
-    vkDestroySwapchainKHR(device, swapChain, nullptr);
-    vkDestroyDevice(device, nullptr);
-    if (enableValidationLayer) {
-      destroyDebugUtilsMessengerEXT(vkinstance, debugMessenger, nullptr);
-    }
-
-    vkDestroyInstance(vkinstance, nullptr);
+void VteDevice::recreateSwapChains() {
+  for (auto imageView : swapChainImageViews) {
+    vkDestroyImageView(device, imageView, nullptr);
+  }
+  vkDestroySwapchainKHR(device, swapChain, nullptr);
+  CreateSwapChain();
+  CreateImageViews();
 }
 
 VkDevice &VteDevice::getVkDevice() { return device; }
@@ -253,9 +260,8 @@ void VteDevice::pickPhysicalDevice() {
 
   if (physicalDevice == VK_NULL_HANDLE) {
     throw std::runtime_error("failed to find suitable physical device");
-  }
-  else {
-      queueFamilies = findQueueFamilies(physicalDevice);
+  } else {
+    queueFamilies = findQueueFamilies(physicalDevice);
   }
 }
 
@@ -321,8 +327,9 @@ void VteDevice::createLogicalDevice() {
 
   std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 
-  std::set<uint32_t> uniqueQueueFamilies = {queueFamilies.graphicsFamily.value(),
-                                            queueFamilies.presentFamily.value()};
+  std::set<uint32_t> uniqueQueueFamilies = {
+      queueFamilies.graphicsFamily.value(),
+      queueFamilies.presentFamily.value()};
 
   float queuePriority = 1.0f;
   for (uint32_t queueFamily : uniqueQueueFamilies) {
@@ -364,8 +371,10 @@ void VteDevice::createLogicalDevice() {
     throw std::runtime_error("failed to create logical device!");
   }
 
-  vkGetDeviceQueue(device, queueFamilies.graphicsFamily.value(), 0, &graphicsQueue);
-  vkGetDeviceQueue(device, queueFamilies.presentFamily.value(), 0, &presentQueue);
+  vkGetDeviceQueue(device, queueFamilies.graphicsFamily.value(), 0,
+                   &graphicsQueue);
+  vkGetDeviceQueue(device, queueFamilies.presentFamily.value(), 0,
+                   &presentQueue);
 }
 
 void VteDevice::CreateSwapChain() {
@@ -396,7 +405,7 @@ void VteDevice::CreateSwapChain() {
   swapChainCreateInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
   uint32_t queueFamiliesArr[] = {queueFamilies.graphicsFamily.value(),
-                              queueFamilies.presentFamily.value()};
+                                 queueFamilies.presentFamily.value()};
 
   if (queueFamilies.graphicsFamily != queueFamilies.presentFamily) {
     swapChainCreateInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
@@ -531,9 +540,16 @@ VteDevice::chooseSwapExtent(const VkSurfaceCapabilitiesKHR &capabilities) {
       std::numeric_limits<uint32_t>::max()) {
     return capabilities.currentExtent;
   } else {
-    int width, height;
+    int width = 0, height = 0;
 
     glfwGetFramebufferSize(vteWindow.window, &width, &height);
+
+    while (width == 0 || height == 0) {
+        if (glfwWindowShouldClose(vteWindow.window))
+		   return capabilities.currentExtent;
+        glfwGetFramebufferSize(vteWindow.window, &width, &height);
+        glfwWaitEvents();
+    }
 
     VkExtent2D actualExtent = {static_cast<uint32_t>(width),
                                static_cast<uint32_t>(height)};

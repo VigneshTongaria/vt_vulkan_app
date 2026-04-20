@@ -11,11 +11,13 @@ public:
   VkPipeline graphicsPipeLine;
   VkRenderPass renderPass;
   std::vector<VkFramebuffer> swapChainFrameBuffers;
+  void destroyFrameBuffers();
+  void recreateFrameBuffers();
 
   void cleanPP();
 
 private:
-  VteDevice device;
+  VteDevice& device;
   VkShaderModule fragShaderModule;
   VkShaderModule vertShaderModule;
   VkPipelineLayout pipeLineLayout;
